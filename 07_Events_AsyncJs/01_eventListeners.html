@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // document.getElementById("owl").onclick = function(){
+    //     alert("Owl O.O")
+    // }
+
+    //attachEvent() - used earlier in internet Explorer
+    //jQuery - onEvent
+
+    //EVENT OBJECT
+    //e - type, timestamp, defaultPrevented - like preventing form from being submitted byDefault
+    // target, toElement, srcElement, currentTarget
+    //interview - clientX, clientY, screenX, screenY
+    //altkey - key pressed or not, ctrlkey, shiftkey, keyCode
+
+
+
+
+
+    //EVENT PROPOGATION - 
+    //false - bubbling
+    //true - capturing
+
+    //TRY CODE FROM HERE
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log("clicked inside the ul");
+        
+    // }, false)
+
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     // alert("Owl OwO O.O")
+        
+    //     console.log("Owl clicked");
+    //     e.stopPropagation()//Sometimes u don't want the event to propogate
+    // }, false)
+ 
+    
+    // //will click n don't want to go to google website as is happening by default
+    // document.getElementById('google').addEventListener('click', function(e){
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     console.log("google clicked");
+        
+    // }, false)
+
+    
+    //REMOVE/VANISH THE IMAGES 
+
+    //MY APPROACH
+    // const li = document.querySelectorAll('li');
+    // console.log(li);
+    
+    // li.forEach((item)=>{
+    //     item.addEventListener('click', function(e){
+    //         // console.log(e);
+    //         item.style.display = "none"
+    //     }, false)
+    // })
+
+    //HIS APPROACH
+    
+    document.querySelector('#images').addEventListener('click', function(e){
+
+        // console.log(e.target.parentNode);
+        console.log(e.target.tagName);
+        if(e.target.tagName === 'IMG'){//only want images removed
+            console.log(e.target.id);
+            
+            let removeIt = e.target.parentNode//li as target is img
+            removeIt.remove(); 
+        } 
+    })
+
+</script>
+</html>

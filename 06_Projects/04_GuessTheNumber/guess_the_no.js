@@ -36,7 +36,7 @@ function validateGuess(guess){
         prevGuess.push(guess)
         if(numGuess === 11){
             displayGuess(guess);
-            displayMessage(`Game Over. Random numbeer was ${num}`)
+            displayMessage(`Game Over. Random number was ${num}`)
             endGame()
         }else{
             displayGuess(guess);
