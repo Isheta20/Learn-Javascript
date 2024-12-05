@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API XMLHTTPRequest</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .card{
+            border: 1px solid yellowgreen;
+            border-radius: 20px;
+            width: 400px;
+            text-align: center;
+            padding: 10px;
+            
+        }
+        h1{
+            text-align: center;
+        }
+        h2{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<!-- 
+0   UNSENT	Client has been created. open() not called yet.
+1	OPENED	open() has been called.
+2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+3	LOADING	Downloading; responseText holds partial data.
+4	DONE	The operation is complete. -->
+<body style="background-color: #212121; color: aliceblue;">
+    <h1>API Requests</h1>
+    <div class="card">
+    </div>
+</body>
+<script>
+
+    const card = document.querySelector(".card");
+
+    const requestUrl = 'https://api.github.com/users/Isheta20'
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', requestUrl)
+    xhr.onreadystatechange = function(){
+    
+        console.log(xhr.readyState);
+        if(xhr.readyState == 4){
+            const data = JSON.parse(this.responseText)
+            console.log(typeof data);//response from url is in string format we converted to json
+            
+            console.log(data);
+            // console.log(data.following);
+
+            const h2 = document.createElement("h2")
+            h2.innerHTML = data.name;   
+
+            const h3 = document.createElement("h3").innerHTML = `Username: ${data.login}`
+            
+            card.append(h2)
+            card.append(h3)
+        }
+    }
+    xhr.send()
+</script>
+</html>
