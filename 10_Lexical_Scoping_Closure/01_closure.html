@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+<script>
+    
+ //Lexical Scoping
+    function outer(){
+        let username = "isheta";
+        // console.log("Outer", secret);//this will give error
+        
+        function inner(){
+            let secret = "jewiofweof"
+            console.log("Inner", username);
+            
+        }
+        function innerTwo(){
+            console.log("InnerTwo", username);
+            // console.log(secret);//this will give error 
+            
+        }
+        inner()
+        innerTwo()
+    }
+    outer()
+    // console.log("Too Outer",username);//this will give error 
+
+
+    //Closure
+    function makeFunc(){
+        const name = "Mozilla";
+        function displayName(){
+            console.log(name);
+            
+        }
+        return displayName;
+    }    
+    const myFunc = makeFunc();
+    myFunc();
+    //When you return a function then not just the function the whole lexical scope gets returned.
+
+</script>
+
+<script>
+// document.getElementById("orange").onclick = function(){
+//     document.body.style.backgroundColor = 'orange'
+// }
+// document.getElementById("green").onclick = function(){
+//     document.body.style.backgroundColor = 'green'
+// }
+
+//for 'n' buttons
+
+//real world scenario of closure 
+function clickHandler(color){
+
+    return function(){
+
+        document.body.style.backgroundColor = `${color}`
+    }
+}
+document.getElementById('orange').onclick = clickHandler("orange")
+document.getElementById('green').onclick = clickHandler("green")
+
+//reference matlab function definition just that, that's what onclick wants
+
+</script>
+
+</html>
